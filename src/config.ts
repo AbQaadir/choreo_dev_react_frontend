@@ -6,4 +6,4 @@ interface Window {
 
 declare var window: Window & typeof globalThis;
 
-export const apiUrl = window.configs?.apiUrl ?? "";
+export const apiUrl = window?.configs?.apiUrl ? window.configs.apiUrl : "/";
