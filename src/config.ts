@@ -1,9 +1,11 @@
 interface Window {
     config: {
-        BACKEND_BASE_URL: string;
+        apiUrl: string;
     };
 }
 
-declare var window: Window;
+declare var window: Window & typeof globalThis;
 
-export const serviceUrl = window.config?.BACKEND_BASE_URL ?? "";
+const apiUrl = window?.config?.apiUrl ? window.config.apiUrl : "/";
+
+export { apiUrl };
