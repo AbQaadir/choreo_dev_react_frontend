@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './FileUpload.css';
-import { apiUrl } from '../config';
+import { serviceUrl } from '../config';
 
 const FileUpload: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -41,7 +41,8 @@ const FileUpload: React.FC = () => {
         const base64String = reader.result?.toString().split(',')[1];
         if (base64String) {
           console.log('Sending base64-encoded file and type to the backend...');
-          const response = await axios.post(`${apiUrl}/smartDocInsightsAPI`, {
+          console.log(serviceUrl)
+          const response = await axios.post(`${serviceUrl}/smartDocInsightsAPI`, {
             file_type: file.type,
             base64_file: base64String,
           });

@@ -1,9 +1,9 @@
 interface Window {
     configs: {
-        apiUrl: string;
+        serviceUrl: string;
     };
 }
 
 declare var window: Window & typeof globalThis;
 
-export const apiUrl = window?.configs?.apiUrl ?? "";
+export const serviceUrl = window?.configs?.serviceUrl ?? "";
