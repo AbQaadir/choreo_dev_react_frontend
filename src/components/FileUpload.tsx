@@ -41,7 +41,11 @@ const FileUpload: React.FC = () => {
         const base64String = reader.result?.toString().split(',')[1];
         if (base64String) {
           console.log('Sending base64-encoded file and type to the backend...');
-          console.log(serviceUrl)
+          console.log(`${serviceUrl}/smartDocInsightsAPI`);
+          console.log(file.type);
+          console.log(base64String);
+          
+
           const response = await axios.post(`${serviceUrl}/smartDocInsightsAPI`, {
             file_type: file.type,
             base64_file: base64String,
