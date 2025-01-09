@@ -61,7 +61,7 @@ const FileUpload: React.FC = () => {
                 base64_file: base64String,
               },
               {
-                timeout: 60000, // Set timeout to 60 seconds
+                timeout: 180000, // Set timeout to 3 min
               }
             );
             console.log('Response from backend:');
