@@ -1,0 +1,53 @@
+/* AssignmentPage.css */
+
+.assignment-page-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.markdown-container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.markdown-container h1,
+.markdown-container h2,
+.markdown-container h3,
+.markdown-container h4,
+.markdown-container h5,
+.markdown-container h6 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.markdown-container p {
+    margin-bottom: 10px;
+}
+
+.markdown-container ul,
+.markdown-container ol {
+    margin-bottom: 20px;
+}
+
+.markdown-container blockquote {
+    border-left: 4px solid #ccc;
+    padding-left: 10px;
+    margin-left: 0;
+    margin-bottom: 20px;
+}
+
+.markdown-container pre {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.markdown-container code {
+    background-color: #f4f4f4;
+    padding: 2px 4px;
+    border-radius: 4px;
+}

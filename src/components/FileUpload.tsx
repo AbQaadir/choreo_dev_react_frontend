@@ -6,10 +6,20 @@ import { serviceUrl } from '../config';
 
 const FileUpload: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);
+  const [selectedJobRole, setSelectedJobRole] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const navigate = useNavigate();
+
+  const jobRoles = [
+    'Software Engineer',
+    'Senior Software Engineer',
+    'Intern Software Engineer',
+    'DevOps Engineer',
+    'Data Scientist',
+    'Product Manager',
+  ];
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setErrorMessage(null);
@@ -32,12 +42,22 @@ const FileUpload: React.FC = () => {
     }
   };
 
+  const handleJobRoleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedJobRole(event.target.value);
+  };
+
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
     if (!file) {
       setErrorMessage('No file selected.');
       console.log('No file selected for upload.');
+      return;
+    }
+
+    if (!selectedJobRole) {
+      setErrorMessage('Please select a job role.');
+      console.log('No job role selected.');
       return;
     }
 
@@ -70,8 +90,8 @@ const FileUpload: React.FC = () => {
             setSuccessMessage('File uploaded and processed successfully!');
             console.log('File processing completed successfully.');
 
-            // Navigate to the DetailsPage and pass the JSON response as state
-            navigate('/details', { state: response.data });
+            // Navigate to the DetailsPage and pass the JSON response and job role as state
+            navigate('/details', { state: { ...response.data, jobRole: selectedJobRole } });
           } catch (error: any) {
             if (error.code === 'ECONNABORTED') {
               setErrorMessage('The request timed out. Please try again.');
@@ -96,14 +116,37 @@ const FileUpload: React.FC = () => {
   return (
     <div className="file-upload-container">
       <form className="upload-form" onSubmit={handleSubmit}>
-        <h2>Upload Your Resume</h2>
-        <input
-          id="file-input"
-          className="upload-input"
-          type="file"
-          accept="application/pdf, image/png, image/jpeg"
-          onChange={handleFileChange}
-        />
+        <h2>Upload your resume</h2>
+        <div className="upload-input-wrapper">
+          <input
+            id="file-input"
+            className="upload-input"
+            type="file"
+            accept="application/pdf, image/png, image/jpeg"
+            onChange={handleFileChange}
+          />
+          <span>Drag & Drop your file here or</span>
+          <label htmlFor="file-input" className="upload-label">
+            Browse
+          </label>
+        </div>
+        {file && <p className="file-name">{file.name}</p>}
+        <div className="job-role-wrapper">
+          <label htmlFor="job-role">Select Job Role:</label>
+          <select
+            id="job-role"
+            className="job-role-select"
+            value={selectedJobRole}
+            onChange={handleJobRoleChange}
+          >
+            <option value="" disabled>Select a job role</option>
+            {jobRoles.map((role, index) => (
+              <option key={index} value={role}>
+                {role}
+              </option>
+            ))}
+          </select>
+        </div>
         {isLoading && (
           <div className="loading-overlay">
             <div className="loader"></div>
@@ -112,7 +155,7 @@ const FileUpload: React.FC = () => {
         )}
         {errorMessage && <p className="error-message">{errorMessage}</p>}
         {successMessage && <p className="success-message">{successMessage}</p>}
-        <button type="submit" className="submit-button" disabled={!file || isLoading}>
+        <button type="submit" className="submit-button" disabled={!file || !selectedJobRole || isLoading}>
           {isLoading ? 'Processing...' : 'Upload'}
         </button>
       </form>
