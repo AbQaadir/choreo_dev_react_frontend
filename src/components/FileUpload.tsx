@@ -104,7 +104,12 @@ const FileUpload: React.FC = () => {
           accept="application/pdf, image/png, image/jpeg"
           onChange={handleFileChange}
         />
-        {isLoading && <p className="loading-message">Processing your file...</p>}
+        {isLoading && (
+          <div className="loading-overlay">
+            <div className="loader"></div>
+            <p className="loading-message">Processing your file...</p>
+          </div>
+        )}
         {errorMessage && <p className="error-message">{errorMessage}</p>}
         {successMessage && <p className="success-message">{successMessage}</p>}
         <button type="submit" className="submit-button" disabled={!file || isLoading}>
