@@ -1,53 +1,113 @@
 /* AssignmentPage.css */
 
+/* General container styling */
 .assignment-page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     padding: 20px;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.markdown-container {
     background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    min-height: 100vh;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    box-sizing: border-box; /* Ensure padding and border are included in width/height */
 }
 
-.markdown-container h1,
-.markdown-container h2,
-.markdown-container h3,
-.markdown-container h4,
-.markdown-container h5,
-.markdown-container h6 {
+/* Header styling */
+.assignment-page-container h1 {
+    font-size: 2.5rem;
+    color: #4a90e2;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Markdown container styling */
+.markdown-container {
+    width: 100%;
+    max-width: 800px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    line-height: 1.6;
+    font-size: 1rem;
+    overflow-x: auto; /* Handle horizontal overflow */
+    overflow-y: auto; /* Handle vertical overflow */
+    max-height: calc(100vh - 100px); /* Ensure the container fits within the viewport */
+    box-sizing: border-box;
+}
+
+/* Markdown element styling */
+.markdown-container h2, .markdown-container h3 {
+    color: #4a90e2;
     margin-top: 20px;
-    margin-bottom: 10px;
 }
 
 .markdown-container p {
-    margin-bottom: 10px;
+    margin-bottom: 16px;
 }
 
-.markdown-container ul,
-.markdown-container ol {
-    margin-bottom: 20px;
+.markdown-container ul {
+    padding-left: 20px;
+    margin-bottom: 16px;
+}
+
+.markdown-container li {
+    margin-bottom: 8px;
+}
+
+.markdown-container a {
+    color: #4a90e2;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.markdown-container a:hover {
+    color: #357ab7;
+    text-decoration: underline;
 }
 
 .markdown-container blockquote {
-    border-left: 4px solid #ccc;
-    padding-left: 10px;
-    margin-left: 0;
-    margin-bottom: 20px;
-}
-
-.markdown-container pre {
-    background-color: #f4f4f4;
-    padding: 10px;
-    border-radius: 4px;
-    margin-bottom: 20px;
+    margin: 20px 0;
+    padding: 10px 20px;
+    border-left: 4px solid #4a90e2;
+    background-color: #f0f8ff;
+    color: #555;
+    font-style: italic;
 }
 
 .markdown-container code {
     background-color: #f4f4f4;
     padding: 2px 4px;
     border-radius: 4px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.95rem;
+}
+
+.markdown-container pre {
+    background-color: #282c34;
+    color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.95rem;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+    .assignment-page-container {
+        padding: 10px;
+    }
+
+    .markdown-container {
+        padding: 15px;
+        font-size: 0.9rem;
+        max-height: calc(100vh - 50px); /* Adjust for smaller screens */
+    }
+
+    .assignment-page-container h1 {
+        font-size: 2rem;
+    }
 }
