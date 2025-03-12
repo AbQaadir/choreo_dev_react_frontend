@@ -61,7 +61,7 @@ const FileUpload: React.FC = () => {
       return;
     }
 
-    setIsLoading(true); // Show loading indicator
+    setIsLoading(true);
     console.log('Starting the file upload process...');
     try {
       const reader = new FileReader();
@@ -81,16 +81,14 @@ const FileUpload: React.FC = () => {
                 base64_file: base64String,
               },
               {
-                timeout: 180000, // Set timeout to 3 min
+                timeout: 180000, // 3 min timeout
               }
             );
-            console.log('Response from backend:');
-            console.log(response.data);
+            console.log('Response from backend:', response.data);
 
             setSuccessMessage('File uploaded and processed successfully!');
             console.log('File processing completed successfully.');
 
-            // Navigate to the DetailsPage and pass the JSON response and job role as state
             navigate('/details', { state: { ...response.data, jobRole: selectedJobRole } });
           } catch (error: any) {
             if (error.code === 'ECONNABORTED') {
@@ -108,38 +106,39 @@ const FileUpload: React.FC = () => {
       setErrorMessage('An unexpected error occurred.');
       console.error('Unexpected error:', error);
     } finally {
-      setIsLoading(false); // Hide loading indicator
+      setIsLoading(false);
       console.log('File upload process ended.');
     }
   };
 
   return (
     <div className="file-upload-container">
-      <form className="upload-form" onSubmit={handleSubmit}>
-        <h2>Upload your resume</h2>
+      <form onSubmit={handleSubmit}>
+        <h2>Upload Resume</h2>
         <div className="upload-input-wrapper">
           <input
             id="file-input"
-            className="upload-input"
             type="file"
             accept="application/pdf, image/png, image/jpeg"
             onChange={handleFileChange}
           />
-          <span>Drag & Drop your file here or</span>
+          <span>Drop file or</span>
           <label htmlFor="file-input" className="upload-label">
             Browse
           </label>
         </div>
         {file && <p className="file-name">{file.name}</p>}
         <div className="job-role-wrapper">
-          <label htmlFor="job-role">Select Job Role:</label>
+          <label htmlFor="job-role">Job Role:</label>
           <select
             id="job-role"
             className="job-role-select"
             value={selectedJobRole}
             onChange={handleJobRoleChange}
           >
-            <option value="" disabled>Select a job role</option>
+            <option value="" disabled>
+              Select
+            </option>
             {jobRoles.map((role, index) => (
               <option key={index} value={role}>
                 {role}
@@ -149,14 +148,18 @@ const FileUpload: React.FC = () => {
         </div>
         {isLoading && (
           <div className="loading-overlay">
-            <div className="loader"></div>
-            <p className="loading-message">Processing your file...</p>
+            <div className="loader" />
+            <p className="loading-message">Processing...</p>
           </div>
         )}
         {errorMessage && <p className="error-message">{errorMessage}</p>}
         {successMessage && <p className="success-message">{successMessage}</p>}
-        <button type="submit" className="submit-button" disabled={!file || !selectedJobRole || isLoading}>
-          {isLoading ? 'Processing...' : 'Upload'}
+        <button
+          type="submit"
+          className="submit-button"
+          disabled={!file || !selectedJobRole || isLoading}
+        >
+          {isLoading ? 'Processing' : 'Upload'}
         </button>
       </form>
     </div>

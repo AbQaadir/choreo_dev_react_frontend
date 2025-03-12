@@ -176,6 +176,7 @@ const DetailsPage: React.FC = () => {
         e.preventDefault();
 
         console.log('Submitting data:', resumeDetails);
+        console.log('Genrating Challenge');
 
         try {
             const response = await axios.post(`${serviceUrl}/userDetails`, {

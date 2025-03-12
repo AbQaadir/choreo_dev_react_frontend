@@ -1,113 +1,108 @@
-/* AssignmentPage.css */
-
-/* General container styling */
 .assignment-page-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 20px;
-    background-color: #f9f9f9;
+    padding: 10px; /* Reduced padding */
+    background-color: #1a1a1a; /* Black background */
     min-height: 100vh;
     font-family: 'Arial', sans-serif;
-    color: #333;
-    box-sizing: border-box; /* Ensure padding and border are included in width/height */
-}
-
-/* Header styling */
-.assignment-page-container h1 {
-    font-size: 2.5rem;
-    color: #4a90e2;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-/* Markdown container styling */
-.markdown-container {
-    width: 100%;
-    max-width: 800px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    line-height: 1.6;
-    font-size: 1rem;
-    overflow-x: auto; /* Handle horizontal overflow */
-    overflow-y: auto; /* Handle vertical overflow */
-    max-height: calc(100vh - 100px); /* Ensure the container fits within the viewport */
+    color: #ffffff; /* White text */
     box-sizing: border-box;
-}
-
-/* Markdown element styling */
-.markdown-container h2, .markdown-container h3 {
-    color: #4a90e2;
-    margin-top: 20px;
-}
-
-.markdown-container p {
-    margin-bottom: 16px;
-}
-
-.markdown-container ul {
-    padding-left: 20px;
-    margin-bottom: 16px;
-}
-
-.markdown-container li {
+  }
+  
+  .assignment-page-container h1 {
+    font-size: 20px; /* Smaller font */
+    color: #ff6200; /* Orange */
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .markdown-container {
+    width: 100%;
+    max-width: 600px; /* Smaller width */
+    background-color: #ffffff; /* White background */
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    padding: 10px; /* Reduced padding */
+    line-height: 1.4; /* Slightly tighter line height */
+    font-size: 12px; /* Smaller font */
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: calc(100vh - 60px); /* Adjusted for smaller UI */
+    box-sizing: border-box;
+    color: #1a1a1a; /* Black text */
+  }
+  
+  .markdown-container h2, .markdown-container h3 {
+    color: #ff6200; /* Orange */
+    margin-top: 10px;
+    font-size: 14px; /* Smaller font */
+  }
+  
+  .markdown-container p {
+    margin-bottom: 8px; /* Reduced margin */
+  }
+  
+  .markdown-container ul {
+    padding-left: 15px; /* Reduced padding */
     margin-bottom: 8px;
-}
-
-.markdown-container a {
-    color: #4a90e2;
+  }
+  
+  .markdown-container li {
+    margin-bottom: 4px; /* Reduced margin */
+  }
+  
+  .markdown-container a {
+    color: #ff6200; /* Orange */
     text-decoration: none;
     transition: color 0.3s;
-}
-
-.markdown-container a:hover {
-    color: #357ab7;
+  }
+  
+  .markdown-container a:hover {
+    color: #e65a00; /* Darker orange */
     text-decoration: underline;
-}
-
-.markdown-container blockquote {
-    margin: 20px 0;
-    padding: 10px 20px;
-    border-left: 4px solid #4a90e2;
-    background-color: #f0f8ff;
-    color: #555;
+  }
+  
+  .markdown-container blockquote {
+    margin: 10px 0;
+    padding: 5px 10px; /* Reduced padding */
+    border-left: 3px solid #ff6200; /* Orange */
+    background-color: #f7f7f7;
+    color: #1a1a1a; /* Black */
     font-style: italic;
-}
-
-.markdown-container code {
-    background-color: #f4f4f4;
-    padding: 2px 4px;
-    border-radius: 4px;
+  }
+  
+  .markdown-container code {
+    background-color: #f0f0f0;
+    padding: 1px 3px; /* Smaller padding */
+    border-radius: 3px;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 0.95rem;
-}
-
-.markdown-container pre {
-    background-color: #282c34;
-    color: #ffffff;
-    padding: 15px;
-    border-radius: 8px;
+    font-size: 11px; /* Smaller font */
+  }
+  
+  .markdown-container pre {
+    background-color: #1a1a1a; /* Black */
+    color: #ffffff; /* White */
+    padding: 8px; /* Reduced padding */
+    border-radius: 5px;
     overflow-x: auto;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 0.95rem;
-}
-
-/* Responsive styling */
-@media (max-width: 768px) {
+    font-size: 11px; /* Smaller font */
+  }
+  
+  @media (max-width: 768px) {
     .assignment-page-container {
-        padding: 10px;
+      padding: 5px; /* Even smaller padding */
     }
-
+  
     .markdown-container {
-        padding: 15px;
-        font-size: 0.9rem;
-        max-height: calc(100vh - 50px); /* Adjust for smaller screens */
+      padding: 8px;
+      font-size: 11px; /* Smaller font */
+      max-height: calc(100vh - 40px);
     }
-
+  
     .assignment-page-container h1 {
-        font-size: 2rem;
+      font-size: 16px; /* Smaller font */
     }
-}
+  }
