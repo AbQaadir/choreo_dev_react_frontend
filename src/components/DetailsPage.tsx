@@ -1,19 +1,8 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { clientCredentials as oauth } from 'axios-oauth-client';
 import './DetailsPage.css';
-
-declare global {
-    interface Window {
-        configs?: {
-            apiUrl?: string;
-            consumerKey?: string;
-            consumerSecret?: string;
-            tokenUrl?: string;
-        };
-    }
-}
+import { serviceUrl } from '../config';
 
 // Defines the type for personal information.
 interface PersonalInfo {
@@ -96,11 +85,6 @@ const DetailsPage: React.FC = () => {
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const [successMessage, setSuccessMessage] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
-
-    const apiUrl = window?.configs?.apiUrl ? window.configs.apiUrl : "/";
-    const consumerKey = window?.configs?.consumerKey ? window.configs.consumerKey : "";
-    const consumerSecret = window?.configs?.consumerSecret ? window.configs.consumerSecret : "";
-    const tokenUrl = window?.configs?.tokenUrl ? window.configs.tokenUrl : "";
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -198,16 +182,7 @@ const DetailsPage: React.FC = () => {
         setIsLoading(true);
 
         try {
-            const getClientCredentials = oauth(
-                axios.create(),
-                tokenUrl,
-                consumerKey,
-                consumerSecret
-            );
-            const auth = await getClientCredentials('default');
-            const accessToken = auth.access_token;
-
-            const response = await axios.post(`${apiUrl}/userDetails`, {
+            const response = await axios.post(`${serviceUrl}/userDetails`, {
                 personal_info: resumeDetails.personal_info,
                 education: resumeDetails.education,
                 experience: resumeDetails.experience,
@@ -218,10 +193,6 @@ const DetailsPage: React.FC = () => {
                 languages: resumeDetails.languages,
                 interests: resumeDetails.interests,
                 jobRole: resumeDetails.jobRole,
-            }, {
-                headers: {
-                    'Authorization': `Bearer ${accessToken}`
-                }
             });
             console.log('Data uploaded successfully:', response.data);
             setSuccessMessage('Data saved successfully!');

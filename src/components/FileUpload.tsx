@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import * as oauth from 'axios-oauth-client';
 import './FileUpload.css';
+import { serviceUrl } from '../config';
 
 const FileUpload: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -20,11 +20,6 @@ const FileUpload: React.FC = () => {
     'Data Scientist',
     'Product Manager',
   ];
-
-  const apiUrl = window?.configs?.apiUrl ? window.configs.apiUrl : "/";
-  const consumerKey = window?.configs?.consumerKey ? window.configs.consumerKey : "";
-  const consumerSecret = window?.configs?.consumerSecret ? window.configs.consumerSecret : "";
-  const tokenUrl = window?.configs?.tokenUrl ? window.configs.tokenUrl : "";
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setErrorMessage(null);
@@ -66,39 +61,27 @@ const FileUpload: React.FC = () => {
       return;
     }
 
-    setIsLoading(true);
     console.log('Starting the file upload process...');
     try {
-      const getClientCredentials = oauth.clientCredentials(
-        axios.create(),
-        tokenUrl,
-        consumerKey,
-        consumerSecret
-      );
-      const auth = await getClientCredentials({});
-      const accessToken = auth.access_token;
-
       const reader = new FileReader();
       reader.onload = async () => {
         const base64String = reader.result?.toString().split(',')[1];
         if (base64String) {
           console.log('File successfully read as base64.');
           console.log('Sending file to the backend...');
-          console.log(`Endpoint: ${apiUrl}/smartDocInsightsAPI`);
+          console.log(`Endpoint: ${serviceUrl}/smartDocInsightsAPI`);
           console.log(`File type: ${file.type}`);
 
           try {
+            setIsLoading(true);
             const response = await axios.post(
-              `${apiUrl}/smartDocInsightsAPI`,
+              `${serviceUrl}/smartDocInsightsAPI`,
               {
                 file_type: file.type,
                 base64_file: base64String,
               },
               {
                 timeout: 180000, // 3 min timeout
-                headers: {
-                  'Authorization': `Bearer ${accessToken}`
-                }
               }
             );
             console.log('Response from backend:', response.data);
