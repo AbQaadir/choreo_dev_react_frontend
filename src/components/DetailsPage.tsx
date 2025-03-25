@@ -175,10 +175,6 @@ const DetailsPage: React.FC = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-
-        console.log('Submitting data:', resumeDetails);
-        console.log('Generating Challenge');
-
         setIsLoading(true);
 
         try {
@@ -194,7 +190,6 @@ const DetailsPage: React.FC = () => {
                 interests: resumeDetails.interests,
                 jobRole: resumeDetails.jobRole,
             });
-            console.log('Data uploaded successfully:', response.data);
             setSuccessMessage('Data saved successfully!');
 
             // Redirect to the /assignment page with the response data

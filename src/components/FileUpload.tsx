@@ -30,13 +30,9 @@ const FileUpload: React.FC = () => {
       const validFileTypes = ['application/pdf', 'image/png', 'image/jpeg'];
 
       if (validFileTypes.includes(selectedFile.type)) {
-        console.log(`Selected file: ${selectedFile.name}`);
-        console.log(`File type: ${selectedFile.type}`);
-        console.log(`File size: ${(selectedFile.size / 1024).toFixed(2)} KB`);
         setFile(selectedFile);
       } else {
         setErrorMessage('Please upload a valid PDF or image file (PNG/JPEG).');
-        console.log('Invalid file type selected.');
         setFile(null);
       }
     }
@@ -51,26 +47,19 @@ const FileUpload: React.FC = () => {
 
     if (!file) {
       setErrorMessage('No file selected.');
-      console.log('No file selected for upload.');
       return;
     }
 
     if (!selectedJobRole) {
       setErrorMessage('Please select a job role.');
-      console.log('No job role selected.');
       return;
     }
 
-    console.log('Starting the file upload process...');
     try {
       const reader = new FileReader();
       reader.onload = async () => {
         const base64String = reader.result?.toString().split(',')[1];
         if (base64String) {
-          console.log('File successfully read as base64.');
-          console.log('Sending file to the backend...');
-          console.log(`Endpoint: ${serviceUrl}/smartDocInsightsAPI`);
-          console.log(`File type: ${file.type}`);
 
           try {
             setIsLoading(true);
@@ -84,16 +73,13 @@ const FileUpload: React.FC = () => {
                 timeout: 180000, // 3 min timeout
               }
             );
-            console.log('Response from backend:', response.data);
 
             setSuccessMessage('File uploaded and processed successfully!');
-            console.log('File processing completed successfully.');
 
             navigate('/details', { state: { ...response.data, jobRole: selectedJobRole } });
           } catch (error: any) {
             if (error.code === 'ECONNABORTED') {
               setErrorMessage('The request timed out. Please try again.');
-              console.log('Error: Request timed out.');
             } else {
               setErrorMessage('An error occurred while processing the file.');
               console.error('Error processing file:', error);
@@ -107,7 +93,6 @@ const FileUpload: React.FC = () => {
       console.error('Unexpected error:', error);
     } finally {
       setIsLoading(false);
-      console.log('File upload process ended.');
     }
   };
 
