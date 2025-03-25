@@ -2840,6 +2840,11 @@ axe-core@^4.10.0:
   resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-4.10.2.tgz#85228e3e1d8b8532a27659b332e39b7fa0e022df"
   integrity sha512-RE3mdQ7P3FRSe7eqCWoeQ/Z9QXrtniSjp1wUjt5nRC3WIpz5rSCve6o3fsZ2aCpJtrZjSZgjwXAoTO5k4tEI0w==
 
+axios-oauth-client@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/axios-oauth-client/-/axios-oauth-client-2.2.0.tgz#d5e7421cce61d50c02417e49702601e96ddf7fcd"
+  integrity sha512-rRaDtK6CuPs+4lDqpAEc4s0c0/Zc2SF4HjVq5DDUL3FkwE/khlxZfnts3MKu1HANODBJ3YOViZVmevx/OUDS2Q==
+
 axios@^1.7.9:
   version "1.7.9"
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.7.9.tgz#d7d071380c132a24accda1b2cfc1535b79ec650a"
