@@ -61,7 +61,6 @@ const FileUpload: React.FC = () => {
       return;
     }
 
-    setIsLoading(true);
     console.log('Starting the file upload process...');
     try {
       const reader = new FileReader();
@@ -74,6 +73,7 @@ const FileUpload: React.FC = () => {
           console.log(`File type: ${file.type}`);
 
           try {
+            setIsLoading(true);
             const response = await axios.post(
               `${serviceUrl}/smartDocInsightsAPI`,
               {

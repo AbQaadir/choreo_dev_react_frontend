@@ -84,6 +84,7 @@ const DetailsPage: React.FC = () => {
     });
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const [successMessage, setSuccessMessage] = useState<string | null>(null);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -176,7 +177,9 @@ const DetailsPage: React.FC = () => {
         e.preventDefault();
 
         console.log('Submitting data:', resumeDetails);
-        console.log('Genrating Challenge');
+        console.log('Generating Challenge');
+
+        setIsLoading(true);
 
         try {
             const response = await axios.post(`${serviceUrl}/userDetails`, {
@@ -199,6 +202,8 @@ const DetailsPage: React.FC = () => {
         } catch (error) {
             console.error('Error uploading data:', error);
             setErrorMessage('An error occurred while saving the data.');
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -471,11 +476,18 @@ const DetailsPage: React.FC = () => {
                 </div>
 
                 <div className="form-actions">
-                    <button type="submit" className="submit-button">
-                        Submit
+                    <button type="submit" className="submit-button" disabled={isLoading}>
+                        {isLoading ? 'Processing' : 'Submit'}
                     </button>
                 </div>
             </form>
+
+            {isLoading && (
+                <div className="loading-overlay">
+                    <div className="loader" />
+                    <p className="loading-message">Processing...</p>
+                </div>
+            )}
 
             {errorMessage && <p className="error-message">{errorMessage}</p>}
             {successMessage && <p className="success-message">{successMessage}</p>}

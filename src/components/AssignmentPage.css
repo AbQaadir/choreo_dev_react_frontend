@@ -1,108 +1,108 @@
 .assignment-page-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 10px; /* Reduced padding */
-    background-color: #1a1a1a; /* Black background */
-    min-height: 100vh;
-    font-family: 'Arial', sans-serif;
-    color: #ffffff; /* White text */
-    box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #f5f5f5; /* Light background */
+  min-height: 100vh;
+  font-family: 'Arial', sans-serif;
+  color: #333333; /* Dark text */
+  box-sizing: border-box;
+}
+
+.assignment-page-container h1 {
+  font-size: 24px; /* Larger font */
+  color: #ff6200; /* Orange */
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.markdown-container {
+  width: 100%;
+  max-width: 800px; /* Larger width */
+  background-color: #ffffff; /* White background */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px; /* Increased padding */
+  line-height: 1.6; /* More readable line height */
+  font-size: 16px; /* Larger font */
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: calc(100vh - 80px); /* Adjusted for larger UI */
+  box-sizing: border-box;
+  color: #333333; /* Dark text */
+}
+
+.markdown-container h2, .markdown-container h3 {
+  color: #ff6200; /* Orange */
+  margin-top: 20px;
+  font-size: 20px; /* Larger font */
+}
+
+.markdown-container p {
+  margin-bottom: 16px; /* Increased margin */
+}
+
+.markdown-container ul {
+  padding-left: 20px; /* Increased padding */
+  margin-bottom: 16px;
+}
+
+.markdown-container li {
+  margin-bottom: 8px; /* Increased margin */
+}
+
+.markdown-container a {
+  color: #ff6200; /* Orange */
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.markdown-container a:hover {
+  color: #e65a00; /* Darker orange */
+  text-decoration: underline;
+}
+
+.markdown-container blockquote {
+  margin: 20px 0;
+  padding: 10px 20px; /* Increased padding */
+  border-left: 4px solid #ff6200; /* Orange */
+  background-color: #f9f9f9;
+  color: #333333; /* Dark text */
+  font-style: italic;
+}
+
+.markdown-container code {
+  background-color: #f0f0f0;
+  padding: 2px 5px; /* Increased padding */
+  border-radius: 4px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px; /* Larger font */
+}
+
+.markdown-container pre {
+  background-color: #f5f5f5; /* Light background */
+  color: #333333; /* Dark text */
+  padding: 16px; /* Increased padding */
+  border-radius: 8px;
+  overflow-x: auto;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px; /* Larger font */
+}
+
+@media (max-width: 768px) {
+  .assignment-page-container {
+      padding: 10px; /* Smaller padding */
   }
-  
-  .assignment-page-container h1 {
-    font-size: 20px; /* Smaller font */
-    color: #ff6200; /* Orange */
-    margin-bottom: 10px;
-    text-align: center;
-  }
-  
+
   .markdown-container {
-    width: 100%;
-    max-width: 600px; /* Smaller width */
-    background-color: #ffffff; /* White background */
-    border-radius: 5px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-    padding: 10px; /* Reduced padding */
-    line-height: 1.4; /* Slightly tighter line height */
-    font-size: 12px; /* Smaller font */
-    overflow-x: auto;
-    overflow-y: auto;
-    max-height: calc(100vh - 60px); /* Adjusted for smaller UI */
-    box-sizing: border-box;
-    color: #1a1a1a; /* Black text */
+      padding: 16px;
+      font-size: 14px; /* Smaller font */
+      max-height: calc(100vh - 60px);
   }
-  
-  .markdown-container h2, .markdown-container h3 {
-    color: #ff6200; /* Orange */
-    margin-top: 10px;
-    font-size: 14px; /* Smaller font */
+
+  .assignment-page-container h1 {
+      font-size: 20px; /* Smaller font */
   }
-  
-  .markdown-container p {
-    margin-bottom: 8px; /* Reduced margin */
-  }
-  
-  .markdown-container ul {
-    padding-left: 15px; /* Reduced padding */
-    margin-bottom: 8px;
-  }
-  
-  .markdown-container li {
-    margin-bottom: 4px; /* Reduced margin */
-  }
-  
-  .markdown-container a {
-    color: #ff6200; /* Orange */
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-  
-  .markdown-container a:hover {
-    color: #e65a00; /* Darker orange */
-    text-decoration: underline;
-  }
-  
-  .markdown-container blockquote {
-    margin: 10px 0;
-    padding: 5px 10px; /* Reduced padding */
-    border-left: 3px solid #ff6200; /* Orange */
-    background-color: #f7f7f7;
-    color: #1a1a1a; /* Black */
-    font-style: italic;
-  }
-  
-  .markdown-container code {
-    background-color: #f0f0f0;
-    padding: 1px 3px; /* Smaller padding */
-    border-radius: 3px;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 11px; /* Smaller font */
-  }
-  
-  .markdown-container pre {
-    background-color: #1a1a1a; /* Black */
-    color: #ffffff; /* White */
-    padding: 8px; /* Reduced padding */
-    border-radius: 5px;
-    overflow-x: auto;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 11px; /* Smaller font */
-  }
-  
-  @media (max-width: 768px) {
-    .assignment-page-container {
-      padding: 5px; /* Even smaller padding */
-    }
-  
-    .markdown-container {
-      padding: 8px;
-      font-size: 11px; /* Smaller font */
-      max-height: calc(100vh - 40px);
-    }
-  
-    .assignment-page-container h1 {
-      font-size: 16px; /* Smaller font */
-    }
-  }
+}
